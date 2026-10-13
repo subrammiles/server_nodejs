@@ -1,0 +1,49 @@
+{
+  "name": "nodejs-backend-tutorial",
+  "version": "1.0.0",
+  "description": "Node.js backend development from scratch to advanced, one runnable lesson at a time",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "test": "node --test",
+    "test:watch": "node --test --watch",
+    "test:coverage": "node --test --experimental-test-coverage",
+    "test:jest": "NODE_OPTIONS=--experimental-vm-modules jest --config 12-testing/other-frameworks/jest.config.js",
+    "test:mocha": "mocha '12-testing/other-frameworks/**/*.mocha.js'",
+    "typecheck": "tsc -p 22-typescript"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1150.0",
+    "@aws-sdk/client-s3": "^3.1150.0",
+    "@aws-sdk/client-sqs": "^3.1150.0",
+    "@aws-sdk/lib-dynamodb": "^3.1150.0",
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
+    "helmet": "^8.3.0",
+    "jose": "^6.2.12",
+    "knex": "^3.3.0",
+    "pg": "^8.23.1",
+    "pino": "^10.4.0",
+    "pino-http": "^11.0.0",
+    "swagger-ui-express": "^5.0.1",
+    "ws": "^8.22.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@testcontainers/postgresql": "^12.2.1",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "aws-sdk-client-mock": "^4.1.0",
+    "chai": "^6.3.0",
+    "jest": "^30.5.2",
+    "mocha": "^12.0.3",
+    "sinon": "^22.1.0",
+    "supertest": "^7.3.1",
+    "testcontainers": "^12.2.1",
+    "typescript": "^7.0.2"
+  }
+}
