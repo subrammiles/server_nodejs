@@ -1,0 +1,21 @@
+# Local PostgreSQL for this lesson:  docker compose -f 16-postgres-knex/docker-compose.yml up -d --wait
+# Host port 55432 avoids clashing with a PostgreSQL already installed on your machine.
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: tutorial
+      POSTGRES_PASSWORD: tutorial      # local development only
+      POSTGRES_DB: courses
+    ports:
+      - "55432:5432"
+    # "--wait" waits for this check, so the database really accepts connections before you continue
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tutorial -d courses"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
