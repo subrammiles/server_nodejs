@@ -1,1 +1,0 @@
-pipes is a mechanism where output of one stream is used as input of another stream
