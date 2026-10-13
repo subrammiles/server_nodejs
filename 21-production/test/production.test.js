@@ -38,7 +38,7 @@ describe('observability', () => {
     assert.equal(res.headers['x-request-id'], 'abc-123');
 
     const appLine = lines.find((l) => l.msg === 'greeting requested');
-    assert.equal(appLine.reqId, 'abc-123');
+    assert.equal(appLine.req.id, 'abc-123');   // pino-http adds the request (with its id) to every line
     assert.equal(appLine.user, 'Subbu');
     const accessLine = lines.find((l) => l.msg === 'request completed');
     assert.equal(accessLine.res.statusCode, 200);

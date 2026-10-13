@@ -1,0 +1,17 @@
+{
+  // Node runs the .ts files directly (type stripping); tsc is used ONLY to type-check: npm run typecheck
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "strict": true,                         // catches null/undefined mistakes and implicit any
+    "noEmit": true,                         // don't generate .js files
+    "allowImportingTsExtensions": true,     // import './money.ts' (what Node needs at runtime)
+    "erasableSyntaxOnly": true,             // only syntax Node can strip: no enums, namespaces, parameter properties
+    "verbatimModuleSyntax": true,           // type-only imports must say `import type`
+    "noUncheckedIndexedAccess": true,       // array[i] might be undefined
+    "types": ["node"],
+    "skipLibCheck": true
+  },
+  "include": ["src", "test"]
+}

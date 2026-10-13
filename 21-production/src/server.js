@@ -44,13 +44,17 @@ function shutdown(signal) {
   }, config.SHUTDOWN_TIMEOUT_MS);
   force.unref();
 
+  // Keep-alive sockets stay open after their request finishes and would make close() wait forever.
+  // Close idle ones now, and keep sweeping as in-flight requests complete.
+  const sweeper = setInterval(() => server.closeIdleConnections(), 100);
+  server.closeIdleConnections();
+
   server.close((err) => {
+    clearInterval(sweeper);
     // await knex.destroy(); await redis.quit(); ...
     logger.info('all connections closed, bye');
-    logger.flush?.();
     process.exitCode = err ? 1 : 0;
   });
-  server.closeIdleConnections();   // idle keep-alive sockets would otherwise keep close() waiting
 }
 
 process.on('SIGTERM', () => shutdown('SIGTERM'));
